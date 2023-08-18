@@ -111,7 +111,6 @@ body {
 header {
     display: flex;
     align-items: center;
-    /*gap: 150px;*/
 }
 
 nav ul {
@@ -171,9 +170,6 @@ h1 {
     right: -100px;
     bottom: -100px;
     z-index: -1;
-    /*width: 80%;*/
-    /*opacity: .5;*/
-    /*width: 50%;*/
 }
 
 #about {
@@ -183,14 +179,9 @@ h1 {
     justify-content: space-around;
     align-items: center;
     padding: 30px;
-    gap: 30px;
     margin-top: 200px;
-    /*flex-wrap: wrap;*/
 }
 
-/*.about__image, .about_text {*/
-/*    width: 35%;*/
-/*}*/
 .about_text {
     width: 50%;
 }
@@ -409,6 +400,139 @@ hr {
     padding-bottom: 90px;
     font-size: 12px;
     font-weight: 350;
+}
+
+
+@media only screen and (max-width: 1680px) {
+}
+
+@media only screen and (max-width: 1440px) {
+    .headline__image {
+        width: 80%;
+        bottom: -80px;
+    }
+
+    .about__image {
+        width: 50%;
+    }
+
+
+}
+
+@media only screen and (max-width: 1280px) {
+}
+
+@media only screen and (max-width: 1024px) {
+    .headline__image {
+        opacity: .8;
+        bottom: -50px;
+    }
+
+    #about {
+        flex-direction: column-reverse;
+    }
+
+    .about_text {
+        width: 90%;
+    }
+
+    .about_text h2 {
+        font-size: 32px;
+    }
+
+    .about__image {
+        width: 70%;
+    }
+
+    #features h2 {
+        font-size: 32px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+    .headline__image {
+        opacity: .5;
+        bottom: -30px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    h1 {
+        font-size: 60px;
+    }
+
+    .headline_text p {
+        font-weight: 500;
+        color: #4B5D68;
+    }
+
+    .headline__image {
+        min-width: 460px;
+        bottom: -20px;
+        opacity: .3;
+    }
+
+    .about__image {
+        width: 80%;
+    }
+
+    .about_text p, #features p, .headline_text p {
+        font-size: 16px;
+    }
+
+    .about_text h2, .about_text p {
+        text-align: center;
+    }
+
+
+    #features h2, .about_text h2 {
+        font-size: 28px;
+    }
+
+
+}
+
+@media only screen and (max-width: 600px) {
+}
+
+@media only screen and (max-width: 533px) {
+    nav ul {
+        padding-left: 120px;
+        gap: 20px;
+    }
+
+    h1 {
+        font-size: 40px;
+    }
+
+    .headline__image {
+        opacity: .2;
+    }
+
+    .about__image {
+        width: 100%;
+    }
+
+
+}
+
+@media only screen and (max-width: 360px) {
+    h1 {
+        font-size: 32px;
+    }
+
+    nav ul {
+        padding-left: 100px;
+    }
+
+    .headline_text p, #features p, .about_text p {
+        font-size: 14px;
+    }
+
+}
+
+@media only screen and (max-width: 320px) {
+
 }
 
 
