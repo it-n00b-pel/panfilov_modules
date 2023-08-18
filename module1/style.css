@@ -136,22 +136,22 @@ h1 {
     color: #4b5d68
 }
 
-.learn_button {
+.learn_link {
     background-color: #9c69e2;
     height: 60px;
     width: 170px;
-    color: #fff;
     border-radius: 50px;
     font-weight: 800;
-    font-size: 18px
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.headline__image {
-    position: absolute;
-    right: -100px;
-    bottom: -100px;
-    z-index: -1
+.learn_link p {
+    color: white;
 }
+
 
 #about {
     display: flex;
