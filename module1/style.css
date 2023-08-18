@@ -2,138 +2,119 @@
     padding: 0;
     margin: 0;
     border: none;
-    color: black;
+    color: #000
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
+*, ::after, ::before {
+    box-sizing: border-box
 }
-
-/* Links */
 
 a, a:link, a:visited {
-    text-decoration: none;
+    text-decoration: none
 }
 
 a:hover {
-    text-decoration: none;
+    text-decoration: none
 }
 
-/* Common */
-
-aside, nav, footer, header, section, main {
-    display: block;
+footer, header, main, nav {
+    display: block
 }
 
 h1, h2, h3, h4, h5, h6, p {
     font-size: inherit;
-    font-weight: inherit;
+    font-weight: inherit
 }
 
 ul, ul li {
-    list-style: none;
+    list-style: none
 }
 
 img {
-    vertical-align: top;
+    vertical-align: top
 }
 
-img, svg {
+img {
     max-width: 100%;
-    height: auto;
+    height: auto
 }
 
 address {
-    font-style: normal;
+    font-style: normal
 }
 
-/* Form */
-
-input, textarea, button, select {
+button {
     font-family: inherit;
     font-size: inherit;
     color: inherit;
-    background-color: transparent;
+    background-color: transparent
 }
 
-input::-ms-clear {
-    display: none;
-}
-
-button, input[type="submit"] {
+button {
     display: inline-block;
     box-shadow: none;
     background-color: transparent;
-    background: none;
-    cursor: pointer;
+    background: 0 0;
+    cursor: pointer
 }
 
-input:focus, input:active,
-button:focus, button:active {
-    outline: none;
+button:active, button:focus {
+    outline: 0
 }
 
 button::-moz-focus-inner {
     padding: 0;
-    border: 0;
+    border: 0
 }
 
 label {
-    cursor: pointer;
+    cursor: pointer
 }
-
-legend {
-    display: block;
-}
-
-/*---------START----------*/
 
 body {
-    font-family: 'Ubuntu', sans-serif;
-    margin-top: 35px;
+    font-family: Ubuntu, sans-serif;
+    margin-top: 35px
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
+    width: 70%;
+    margin: 0 auto
 }
 
 .logo {
-    width: 50px;
+    width: 50px
 }
 
 .logo:hover {
-    cursor: pointer;
+    cursor: pointer
 }
 
 header {
     display: flex;
-    align-items: center;
+    align-items: center
 }
 
 nav ul {
     display: flex;
     gap: 40px;
-    padding-left: 150px;
+    padding-left: 150px
 }
 
 nav ul li {
     transition: .3s;
-    text-align: center;
+    text-align: center
 }
 
 nav ul li:hover {
-    transform: scale(1.2);
+    transform: scale(1.2)
 }
 
 .headline {
-    position: relative;
+    position: relative
 }
 
 .block {
-    margin-top: 100px;
+    margin-top: 100px
 }
 
 .headline_text {
@@ -141,204 +122,260 @@ nav ul li:hover {
     flex-direction: column;
     align-items: start;
     gap: 50px;
-    z-index: 100;
+    z-index: 100
 }
 
 h1 {
     font-size: 80px;
-    font-weight: 700;
+    font-weight: 700
 }
 
 .headline_text p {
     font-size: 18px;
     font-weight: 500;
-    color: #4B5D68;
+    color: #4b5d68
 }
 
 .learn_button {
-    background-color: #9C69E2;
+    background-color: #9c69e2;
     height: 60px;
     width: 170px;
-    color: white;
+    color: #fff;
     border-radius: 50px;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 18px
 }
 
 .headline__image {
     position: absolute;
     right: -100px;
     bottom: -100px;
-    z-index: -1;
+    z-index: -1
 }
 
 #about {
     display: flex;
-    background: #F063B826;
+    background: #f063B826;
     border-radius: 50px;
     justify-content: space-around;
     align-items: center;
     padding: 30px;
-    margin-top: 200px;
+    margin-top: 200px
 }
 
 .about_text {
-    width: 50%;
+    width: 50%
 }
-
 
 .about_text h2 {
     font-size: 40px;
     font-weight: 700;
     color: #212353;
-    margin-bottom: 40px;
+    margin-bottom: 40px
 }
 
 .about_text p {
     font-size: 18px;
     font-weight: 500;
-    color: #4B5D68;
+    color: #4b5d68
 }
 
 .features_text {
-    text-align: center;
+    text-align: center
 }
 
-#features h2 {
+.features_text h2 {
     font-size: 40px;
     font-weight: 700;
-    color: #212353;
+    color: #212353
 }
 
-#features p {
+.features_text p {
     font-size: 18px;
-    color: #4B5D68;
-    padding-top: 50px;
+    color: #4b5d68;
+    padding-top: 50px
 }
 
 .features_cards {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 100px;
-    margin-left: 10%;
+    gap: 50px;
+    row-gap: 80px
 }
 
 .feature {
+    height: 350px;
     position: relative;
-    /*max-width: 40%;*/
+    display: flex;
+    justify-content: right
 }
 
 .feature_mainImages {
     position: absolute;
-    top: 30%;
-    left: -20%;
-    max-width: 40%;
+    top: 100px;
+    left: -10px;
+    max-width: 40%
 }
 
 .feature_background {
-    z-index: -1;
-    position: relative;
+    z-index: -1
 }
 
 .feature_eclipse1 {
     position: absolute;
     top: 20px;
-    right: 130px;
+    right: 130px
 }
 
 .feature_eclipse3 {
     position: absolute;
     top: 35px;
-    right: 35px;
+    right: 35px
 }
 
 .feature_eclipse4 {
     position: absolute;
-    bottom: 35px;
-    right: 35px;
+    bottom: 30px;
+    right: 35px
 }
 
 .feature_vector1 {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 10px
 }
 
 .feature_vector2 {
     position: absolute;
     bottom: 10px;
-    right: 30px;
+    right: 30px
 }
 
 .feature_vector4 {
     position: absolute;
     top: 20px;
-    left: 50px;
+    left: 50px
 }
 
 .feature_cardText {
     position: absolute;
     top: 30px;
     right: 30px;
-    width: 60%;
+    width: 50%
+}
+
+.feature_cardText h3 {
+    font-size: 24px
+}
+
+.feature_cardText p {
+    font-size: 18px;
+    font-weight: 300;
+    padding-top: 20px
+}
+
+.feature_learnLink {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-weight: 800;
+    margin-top: 50px
 }
 
 .testimonials {
-    background-color: #9C69E2;
+    background-color: #9c69e2;
     border-radius: 50px;
     position: relative;
-    height: 709px;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 60px
 }
 
 .testimonials__title {
     font-size: 40px;
-    color: white;
-    padding-top: 80px;
-    padding-left: 60px;
+    color: #fff
 }
 
 .testimonials_list {
-    margin-top: 100px;
-    margin-left: 60px;
     display: flex;
-    gap: 30px;
+    gap: 60px;
     width: 2600px;
-
+    margin-top: 50px;
+    margin-bottom: 50px
 }
 
 .testimonials_activeComment {
-    width: 645px;
+    width: 650px;
     height: 320px;
     border-radius: 20px;
-    background-color: white;
-    box-shadow: 0 20px 0 0 rgb(138, 86, 218);
+    background-color: #fff;
+    box-shadow: 0 20px 0 0 #8a56da
+}
+
+.testimonials_nonActiveComment {
+    width: 650px;
+    height: 320px;
+    border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 20px 0 0 #9368d5
 }
 
 .testimonials__avatar {
     width: 90px;
-    height: 90px;
+    height: 90px
+}
+
+.testimonials_text p {
+    margin-top: 10px
+}
+
+.testimonials_text a {
+    color: #9c69e2
+}
+
+.testimonials_text h4 {
+    margin-bottom: 10px
 }
 
 .testimonials_comment {
     display: flex;
     padding: 50px;
-    gap: 30px;
+    gap: 30px
 }
 
-.testimonials_nonActiveComment {
-    width: 340px;
-    height: 320px;
-    border-radius: 20px;
-    background-color: white;
+.testimonials_navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
 }
 
+.activeDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #f063b8
+}
+
+.noActiveDot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #fff;
+    margin-left: 10px
+}
+
+.testimonials_navigation_arrows {
+    display: flex;
+    gap: 20px
+}
 
 hr {
-    background-color: #9C69E2;;
+    background-color: #9c69e2;
     height: 3px;
-    margin-top: 100px;
+    margin-top: 100px
 }
 
 .footer_contactUs {
@@ -346,209 +383,286 @@ hr {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 30px
 }
 
 .footer_contactUs_data {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 30px
 }
 
 .footer_contactUs_header {
     display: flex;
     align-items: center;
-    margin-bottom: 50px;
+    margin-bottom: 50px
 }
 
 .footer_contactUs_header__img {
-    width: 50px;
+    width: 50px
 }
 
 .footer_contactUs_header p {
     font-size: 20px;
     font-weight: 800;
-    padding-left: 30px;
+    padding-left: 30px
 }
 
 .footer_contactUs_emailPhone {
     display: flex;
     flex-direction: column;
     font-weight: 350;
-    gap: 5px;
+    gap: 5px
 }
 
 .footer_socialsMedia p {
-    font-weight: 800;
+    font-weight: 800
 }
 
 .footer_socialsMediaList {
     display: flex;
-    margin-top: 30px;
+    margin-top: 30px
 }
 
 .footer_socialsMedia_link div {
     width: 50px;
     height: 50px;
     margin-left: 10px;
-    background-color: rgba(215, 215, 215, 0.94);
-    border-radius: 50%;
+    background-color: rgba(215, 215, 215, .94);
+    border-radius: 50%
 }
 
 .footer_copyright_text {
     padding-top: 50px;
     padding-bottom: 90px;
     font-size: 12px;
-    font-weight: 350;
-}
-
-
-@media only screen and (max-width: 1680px) {
+    font-weight: 350
 }
 
 @media only screen and (max-width: 1440px) {
+    .container {
+        width: 90%
+    }
+
     .headline__image {
         width: 80%;
-        bottom: -80px;
+        bottom: -80px
     }
 
     .about__image {
-        width: 50%;
+        width: 50%
     }
-
-
 }
 
 @media only screen and (max-width: 1280px) {
+    .feature {
+        display: flex
+    }
 }
 
 @media only screen and (max-width: 1024px) {
+    .container {
+        width: 80%
+    }
+
+    .feature {
+        width: 100%;
+        justify-content: space-between
+    }
+
+    .feature_mainImages {
+        position: relative;
+        max-width: 100%
+    }
+
     .headline__image {
         opacity: .8;
-        bottom: -50px;
+        bottom: -50px
     }
 
     #about {
-        flex-direction: column-reverse;
+        flex-direction: column-reverse
     }
 
     .about_text {
-        width: 90%;
+        width: 90%
     }
 
     .about_text h2 {
-        font-size: 32px;
+        font-size: 32px
     }
 
     .about__image {
-        width: 70%;
+        width: 70%
     }
 
     #features h2 {
-        font-size: 32px;
+        font-size: 32px
+    }
+
+    .feature_background {
+        position: absolute;
+        right: 0;
+        top: 0
+    }
+
+    .feature_cardText {
+        width: 40%;
+        right: 30px
+    }
+
+    .feature_learnLink {
+        margin-top: 40px
+    }
+
+    .testimonials_activeComment, .testimonials_nonActiveComment {
+        width: 500px
     }
 }
 
 @media only screen and (max-width: 800px) {
     .headline__image {
         opacity: .5;
-        bottom: -30px;
+        bottom: -30px
     }
 }
 
 @media only screen and (max-width: 768px) {
     h1 {
-        font-size: 60px;
+        font-size: 60px
     }
 
     .headline_text p {
         font-weight: 500;
-        color: #4B5D68;
+        color: #4b5d68
     }
 
     .headline__image {
         min-width: 460px;
         bottom: -20px;
-        opacity: .3;
+        opacity: .3
     }
 
     .about__image {
-        width: 80%;
+        width: 80%
     }
 
-    .about_text p, #features p, .headline_text p {
-        font-size: 16px;
+    #features p, .about_text p, .headline_text p {
+        font-size: 16px
     }
 
     .about_text h2, .about_text p {
-        text-align: center;
+        text-align: center
     }
-
 
     #features h2, .about_text h2 {
-        font-size: 28px;
+        font-size: 28px
     }
 
+    .feature_background1, .feature_background2, .feature_background3, .feature_background4 {
+        border-radius: 20px;
+        height: 300px
+    }
 
+    .feature_background1 {
+        background-color: #ddf0f4
+    }
+
+    .feature_background2 {
+        background-color: #f5f0fc
+    }
+
+    .feature_background3 {
+        background-color: #fdeff8
+    }
+
+    .feature_background4 {
+        background-color: #eaf5fc
+    }
+
+    .feature_background__img {
+        display: none
+    }
+
+    .feature_mainImages {
+        margin: 0 auto;
+        opacity: .1
+    }
+
+    .feature_cardText {
+        width: 100%;
+        right: 0;
+        padding: 20px
+    }
+
+    .testimonials {
+        padding: 40px
+    }
+
+    .testimonials_activeComment, .testimonials_nonActiveComment {
+        width: 300px;
+        flex-direction: column;
+        padding: 20px;
+        height: 400px
+    }
 }
 
 @media only screen and (max-width: 600px) {
+    .footer_contactUs {
+        flex-direction: column;
+        align-items: center;
+        text-align: center
+    }
+
+    .footer_copyright_text {
+        text-align: center
+    }
 }
 
 @media only screen and (max-width: 533px) {
     nav ul {
         padding-left: 120px;
-        gap: 20px;
+        gap: 20px
     }
 
     h1 {
-        font-size: 40px;
+        font-size: 40px
     }
 
     .headline__image {
-        opacity: .2;
+        opacity: .2
     }
 
     .about__image {
-        width: 100%;
+        width: 100%
     }
 
+    .testimonials_activeComment, .testimonials_nonActiveComment {
+        width: 220px;
+        flex-direction: column;
+        padding: 20px;
+        height: 400px
+    }
 
+    .testimonials__title {
+        font-size: 36px
+    }
 }
 
 @media only screen and (max-width: 360px) {
     h1 {
-        font-size: 32px;
+        font-size: 32px
     }
 
     nav ul {
-        padding-left: 100px;
+        padding-left: 100px
     }
 
-    .headline_text p, #features p, .about_text p {
-        font-size: 14px;
+    .about_text p, .headline_text p {
+        font-size: 14px
     }
 
+    .feature_learnLink {
+        margin-top: 20px
+    }
 }
-
-@media only screen and (max-width: 320px) {
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
