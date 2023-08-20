@@ -5,15 +5,11 @@
     color: #000;
 }
 
-*,
-::after,
-::before {
+*, ::after, ::before {
     box-sizing: border-box;
 }
 
-a,
-a:link,
-a:visited {
+a, a:link, a:visited {
     text-decoration: none;
 }
 
@@ -21,26 +17,16 @@ a:hover {
     text-decoration: none;
 }
 
-footer,
-header,
-main,
-nav {
+footer, header, main, nav {
     display: block;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p {
+h1, h2, h3, h4, h5, h6, p {
     font-size: inherit;
     font-weight: inherit;
 }
 
-ul,
-ul li {
+ul, ul li {
     list-style: none;
 }
 
@@ -67,13 +53,11 @@ button {
 button {
     display: inline-block;
     box-shadow: none;
-    background-color: transparent;
-    background: 0 0;
+    background: transparent 0 0;
     cursor: pointer;
 }
 
-button:active,
-button:focus {
+button:active, button:focus {
     outline: 0;
 }
 
@@ -98,10 +82,20 @@ body {
 
 .logo {
     width: 50px;
+    transition: transform 0.2s ease-in-out;
+    -webkit-transition: transform 0.2s ease-in-out;
+    -moz-transition: transform 0.2s ease-in-out;
+    -ms-transition: transform 0.2s ease-in-out;
+    -o-transition: transform 0.2s ease-in-out;
 }
 
 .logo:hover {
+    transform: scale(1.2);
     cursor: pointer;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
 }
 
 header {
@@ -153,7 +147,6 @@ nav ul li a:hover {
     width: 70%;
     bottom: -80px;
     right: 0;
-    /*opacity: 0.8;*/
     z-index: -1;
 }
 
@@ -231,7 +224,7 @@ h1 {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 40px;
     row-gap: 80px;
 }
 
@@ -313,7 +306,6 @@ h1 {
     font-weight: 800;
     margin-top: 50px;
 }
-
 
 .feature_learnLink img {
     transition: transform 0.2s ease-in-out;
@@ -563,7 +555,6 @@ hr {
     text-decoration: underline;
 }
 
-
 a .learn_link {
     transition: transform 0.2s ease-in-out;
     -webkit-transition: transform 0.2s ease-in-out;
@@ -581,6 +572,11 @@ a:hover .learn_link {
 }
 
 /***********************************************/
+@media only screen and (max-width: 2560px) {
+    .features_cards {
+        justify-content: center;
+    }
+}
 
 @media only screen and (max-width: 1440px) {
     .container {
@@ -590,12 +586,20 @@ a:hover .learn_link {
     .about__image {
         width: 50%;
     }
+
+    .features_cards {
+        justify-content: space-between;
+    }
 }
 
 @media only screen and (max-width: 1280px) {
     .feature {
         display: flex;
     }
+
+    /*.features_cards {*/
+    /* justify-content: center;*/
+    /*}*/
 }
 
 @media only screen and (max-width: 1024px) {
@@ -653,8 +657,7 @@ a:hover .learn_link {
         margin-top: 40px;
     }
 
-    .testimonials_activeComment,
-    .testimonials_nonActiveComment {
+    .testimonials_activeComment, .testimonials_nonActiveComment {
         width: 500px;
     }
 }
@@ -685,26 +688,19 @@ a:hover .learn_link {
         width: 80%;
     }
 
-    #features p,
-    .about_text p,
-    .headline_text p {
+    #features p, .about_text p, .headline_text p {
         font-size: 16px;
     }
 
-    .about_text h2,
-    .about_text p {
+    .about_text h2, .about_text p {
         text-align: center;
     }
 
-    #features h2,
-    .about_text h2 {
+    #features h2, .about_text h2 {
         font-size: 28px;
     }
 
-    .feature_background1,
-    .feature_background2,
-    .feature_background3,
-    .feature_background4 {
+    .feature_background1, .feature_background2, .feature_background3, .feature_background4 {
         border-radius: 20px;
         height: 300px;
     }
@@ -744,8 +740,7 @@ a:hover .learn_link {
         padding: 40px;
     }
 
-    .testimonials_activeComment,
-    .testimonials_nonActiveComment {
+    .testimonials_activeComment, .testimonials_nonActiveComment {
         width: 300px;
         flex-direction: column;
         padding: 20px;
@@ -767,7 +762,7 @@ a:hover .learn_link {
 
 @media only screen and (max-width: 533px) {
     nav ul {
-        padding-left: 120px;
+        padding-left: 80px;
         gap: 20px;
     }
 
@@ -783,8 +778,7 @@ a:hover .learn_link {
         width: 100%;
     }
 
-    .testimonials_activeComment,
-    .testimonials_nonActiveComment {
+    .testimonials_activeComment, .testimonials_nonActiveComment {
         width: 220px;
         flex-direction: column;
         padding: 20px;
@@ -805,8 +799,7 @@ a:hover .learn_link {
         padding-left: 30px;
     }
 
-    .about_text p,
-    .headline_text p {
+    .about_text p, .headline_text p {
         font-size: 14px;
     }
 
@@ -818,8 +811,7 @@ a:hover .learn_link {
         padding: 30px;
     }
 
-    .testimonials_activeComment,
-    .testimonials_nonActiveComment {
+    .testimonials_activeComment, .testimonials_nonActiveComment {
         width: 200px;
         flex-direction: column;
         padding: 15px;
