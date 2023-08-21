@@ -1,0 +1,84 @@
+html {
+    background-color: #666;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: 'VT323', monospace;
+}
+
+.score {
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20px;
+}
+
+.result {
+    height: 10vmin;
+    width: 20vmin;
+    background-color: #333;
+    outline: 4px solid #000;
+    border-radius: 1vmin;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 8vmin;
+    color: white;
+    position: relative;
+    padding: 10px;
+}
+
+.result span {
+    position: absolute;
+    top: 0.5vmin;
+    left: 1vmin;
+    font-size: 2vmin;
+    color: red;
+}
+
+.gameField {
+    width: 72vmin;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #222;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2vmin;
+    padding: 1vmin;
+    outline: 4px solid #000;
+    position: relative;
+}
+
+.cell {
+    width: 12vmin;
+    height: 12vmin;
+    margin: 1vmin;
+    background-color: #333;
+    border-radius: 2vmin;
+}
+
+.tile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 7vmin;
+    font-weight: bolder;
+    width: 12vmin;
+    height: 12vmin;
+    margin: 1vmin;
+    border-radius: 2vmin;
+    outline: 4px solid #fff;
+    animation: 1s show ease;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

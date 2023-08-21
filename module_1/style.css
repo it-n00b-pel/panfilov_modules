@@ -144,9 +144,9 @@ nav ul li a:hover {
 
 .headline__image {
     position: absolute;
-    width: 70%;
+    width: 80%;
     bottom: -80px;
-    right: 0;
+    right: -100px;
     z-index: -1;
 }
 
