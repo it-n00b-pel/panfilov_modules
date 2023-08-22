@@ -1,11 +1,13 @@
 import {getBgColor} from './utils/getBgColor.ts';
 import {resetTimer, startTimer, time} from './utils/timer.ts';
+import {readFromLocalStorage, saveToLocalStorage} from './utils/localStorage.ts';
 
 let gameField: Array<Array<0 | number>> = [];
 let score = 0;
 let isFinish = false;
 let winNum = 2048;
 let isWin = false;
+let currentValue = 0;
 
 const createGameField = () => {
     for (let i = 0; i < 5; i++) {
@@ -68,6 +70,7 @@ const renderData = () => {
     if (pElementResult) pElementResult.innerHTML = score.toString();
 
     if (isWin) {
+        saveToLocalStorage(currentValue);
         let div = document.getElementById('win');
         let spanRes = document.getElementById('finishTime');
         if (div && spanRes) {
@@ -77,6 +80,7 @@ const renderData = () => {
     }
 
     if (isFinish) {
+        saveToLocalStorage(currentValue);
         let div = document.getElementById('gameOver');
         let spanRes = document.getElementById('finishResult');
         if (div && spanRes) {
@@ -130,6 +134,7 @@ const moveLeft = () => {
                     gameField[x][y] *= 2;
                     gameField[x][nextCell] = 0;
                     score += gameField[x][y];
+                    currentValue = score;
                     check2048(gameField[x][y]);
                 }
             } else {
@@ -166,6 +171,7 @@ const moveRight = () => {
                     gameField[x][y] *= 2;
                     gameField[x][nextCell] = 0;
                     score += gameField[x][y];
+                    currentValue = score;
                     check2048(gameField[x][y]);
 
                 }
@@ -202,6 +208,7 @@ const moveUp = () => {
                     gameField[y][x] *= 2;
                     gameField[nextCell][x] = 0;
                     score += gameField[y][x];
+                    currentValue = score;
                     check2048(gameField[y][x]);
                 }
             } else {
@@ -237,6 +244,7 @@ const moveDown = () => {
                     gameField[y][x] *= 2;
                     gameField[nextCell][x] = 0;
                     score += gameField[y][x];
+                    currentValue = score;
                     check2048(gameField[y][x]);
                 }
             } else {
@@ -311,15 +319,18 @@ const handleKeydown = (event: KeyboardEvent) => {
     keyPressOnceTracker();
 };
 
-const parentElement = document.getElementById('gameField');
+let resetButtons = document.getElementsByClassName('btnAgain');
 
-// Добавляем обработчик события click на родительский элемент
-parentElement && parentElement.addEventListener('click', function (event) {
+// Функция-обработчик события click
+function handleClick() {
+    resetGame();
+}
 
-    if (event.target && (event.target as HTMLElement).nodeName === 'BUTTON') {
-        resetGame();
-    }
-});
+// Назначаем обработчик события для каждой кнопки
+for (let i = 0; i < resetButtons.length; i++) {
+    resetButtons[i].addEventListener('click', handleClick);
+}
+
 export const resetGame = () => {
 
     let divGameOver = document.getElementById('gameOver');
@@ -327,6 +338,7 @@ export const resetGame = () => {
 
     if (divGameOver && divWin) {
         resetTimer();
+        currentValue = 0;
         isWin = false;
         start();
         divGameOver.style.display = 'none';
@@ -338,6 +350,12 @@ export const resetGame = () => {
 // ==== START
 
 function start() {
+    const bestRes = readFromLocalStorage('best');
+
+    let pElementResult = document.querySelector('.bestResult p');
+    if (pElementResult && bestRes) pElementResult.innerHTML = bestRes.toString();
+
+    startTimer();
     gameField = [];
     score = 0;
     isFinish = false;
@@ -345,7 +363,6 @@ function start() {
     getRandomNumber();
     getRandomNumber();
     renderData();
-    startTimer();
     keyPressOnceTracker();
 }
 

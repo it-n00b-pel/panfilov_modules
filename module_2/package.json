@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://it-n00b-pel.github.io/2048",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,5 +12,8 @@
   "devDependencies": {
     "typescript": "^5.0.2",
     "vite": "^4.4.5"
+  },
+  "dependencies": {
+    "gh-pages": "^6.0.0"
   }
 }

@@ -13,7 +13,6 @@ body {
 .score {
     display: flex;
     justify-content: end;
-    margin-bottom: 20px;
     align-items: end;
     gap: 6vmin;
 }
@@ -25,7 +24,14 @@ body {
     text-shadow: #333333 3px 3px;
 }
 
-.result {
+#dataInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 20px;
+}
+
+.result, .bestResult {
     height: 9vmin;
     width: 18vmin;
     background-color: #333;
@@ -34,13 +40,13 @@ body {
     display: flex;
     justify-content: end;
     align-items: center;
-    font-size: 8vmin;
+    font-size: 7vmin;
     color: white;
     position: relative;
-    padding: 10px;
+    padding-right: 1vmin;
 }
 
-.result span {
+.result span, .bestResult span {
     position: absolute;
     top: 0.5vmin;
     left: 1vmin;
@@ -84,6 +90,15 @@ body {
     margin: 1vmin;
     border-radius: 2vmin;
     outline: 4px solid #333;
+}
+
+.btnAgain {
+    background-color: #333;
+    width: 10vmin;
+    height: 3vmin;
+    border-radius: 1vmin;
+    color: #ff0000;
+    outline: 2px solid #000;
 }
 
 #gameOver, #win {
