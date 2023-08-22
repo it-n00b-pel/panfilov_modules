@@ -15,12 +15,13 @@
 <body>
 <div>
     <div class="score">
+        <h2 id="timer"></h2>
         <div class="result shadow">
             <span>score</span>
-            <p>2048</p>
+            <p></p>
         </div>
     </div>
-    <div class="gameField shadow">
+    <div class="shadow" id="gameField">
         <div class="cell" id="c00"></div>
         <div class="cell" id="c01"></div>
         <div class="cell" id="c02"></div>
@@ -55,7 +56,15 @@
             <div>
                 <h2>GAME OVER</h2>
                 <h3>YOUR SCORE: <span id="finishResult"></span></h3>
-                <button onclick="console.log(`try again`)" class="btnAgain">Try again</button>
+                <button class="btnAgain">Try again</button>
+            </div>
+        </div>
+
+        <div id="win">
+            <div>
+                <h2>YOU WIN</h2>
+                <h3>YOUR TIME: <span id="finishTime"></span></h3>
+                <button class="btnAgain">Try again</button>
             </div>
         </div>
     </div>

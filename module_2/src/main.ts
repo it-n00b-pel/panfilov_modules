@@ -1,8 +1,11 @@
 import {getBgColor} from './utils/getBgColor.ts';
+import {resetTimer, startTimer, time} from './utils/timer.ts';
 
 let gameField: Array<Array<0 | number>> = [];
 let score = 0;
 let isFinish = false;
+let winNum = 2048;
+let isWin = false;
 
 const createGameField = () => {
     for (let i = 0; i < 5; i++) {
@@ -50,6 +53,12 @@ const renderData = () => {
                     div.classList.add('tile');
                     // Меняем bg ячейки для комфорта/визульного различия
                     div.style.background = getBgColor(gameField[x][y]);
+                    if (gameField[x][y] > 1000) {
+                        div.style.fontSize = '5vmin';
+                    }
+                    if (gameField[x][y] > 20) {
+                        div.style.fontSize = '7vmin';
+                    }
                 }
             }
         }
@@ -57,6 +66,15 @@ const renderData = () => {
 
     let pElementResult = document.querySelector('.result p');
     if (pElementResult) pElementResult.innerHTML = score.toString();
+
+    if (isWin) {
+        let div = document.getElementById('win');
+        let spanRes = document.getElementById('finishTime');
+        if (div && spanRes) {
+            spanRes.innerHTML = time;
+            div.style.display = 'flex';
+        }
+    }
 
     if (isFinish) {
         let div = document.getElementById('gameOver');
@@ -112,6 +130,7 @@ const moveLeft = () => {
                     gameField[x][y] *= 2;
                     gameField[x][nextCell] = 0;
                     score += gameField[x][y];
+                    check2048(gameField[x][y]);
                 }
             } else {
                 break;
@@ -147,6 +166,8 @@ const moveRight = () => {
                     gameField[x][y] *= 2;
                     gameField[x][nextCell] = 0;
                     score += gameField[x][y];
+                    check2048(gameField[x][y]);
+
                 }
             } else {
                 break;
@@ -181,6 +202,7 @@ const moveUp = () => {
                     gameField[y][x] *= 2;
                     gameField[nextCell][x] = 0;
                     score += gameField[y][x];
+                    check2048(gameField[y][x]);
                 }
             } else {
                 break;
@@ -215,6 +237,7 @@ const moveDown = () => {
                     gameField[y][x] *= 2;
                     gameField[nextCell][x] = 0;
                     score += gameField[y][x];
+                    check2048(gameField[y][x]);
                 }
             } else {
                 break;
@@ -229,6 +252,11 @@ const moveDown = () => {
         checkGameOver();
         renderData();
     }
+};
+
+//Проверка есть ли результат 2048
+const check2048 = (num: number) => {
+    num === winNum ? isWin = true : isWin = false;
 };
 
 //Проверка на окончание игры
@@ -253,6 +281,7 @@ const checkGameOver = () => {
             }
         }
     }
+    resetTimer();
     isFinish = true;
     return;
 };
@@ -282,14 +311,29 @@ const handleKeydown = (event: KeyboardEvent) => {
     keyPressOnceTracker();
 };
 
-const button = document.querySelector('.btnAgain');
-button && button.addEventListener('click', function () {
-    let div = document.getElementById('gameOver');
-    if (div) {
-        start();
-        div.style.display = 'none';
+const parentElement = document.getElementById('gameField');
+
+// Добавляем обработчик события click на родительский элемент
+parentElement && parentElement.addEventListener('click', function (event) {
+
+    if (event.target && (event.target as HTMLElement).nodeName === 'BUTTON') {
+        resetGame();
     }
 });
+export const resetGame = () => {
+
+    let divGameOver = document.getElementById('gameOver');
+    let divWin = document.getElementById('win');
+
+    if (divGameOver && divWin) {
+        resetTimer();
+        isWin = false;
+        start();
+        divGameOver.style.display = 'none';
+        divWin.style.display = 'none';
+    }
+};
+
 
 // ==== START
 
@@ -301,6 +345,7 @@ function start() {
     getRandomNumber();
     getRandomNumber();
     renderData();
+    startTimer();
     keyPressOnceTracker();
 }
 
