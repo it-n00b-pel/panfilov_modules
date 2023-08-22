@@ -56,8 +56,12 @@ body {
     width: 12vmin;
     height: 12vmin;
     margin: 1vmin;
-    background-color: #333;
     border-radius: 2vmin;
+    transition: 333ms;
+    text-shadow: 2px -2px 2px #777;
+    -webkit-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
+    box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
 }
 
 .tile {
@@ -70,15 +74,12 @@ body {
     height: 12vmin;
     margin: 1vmin;
     border-radius: 2vmin;
-    outline: 4px solid #fff;
-    animation: 1s show ease;
+    outline: 4px solid #333;
 }
 
-@keyframes show {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
+.shadow {
+    -webkit-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
+    box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
 }
+

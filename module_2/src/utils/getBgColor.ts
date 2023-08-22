@@ -1,5 +1,7 @@
 export const getBgColor = (num: number) => {
     switch (num) {
+        case 2 :
+            return '#9b9b9a';
         case 4 :
             return '#b9ae98';
         case 8 :
@@ -21,6 +23,6 @@ export const getBgColor = (num: number) => {
         case 2048 :
             return '#9228c5';
         default :
-            return '#9b9b9a';
+            return '#333';
     }
 };
