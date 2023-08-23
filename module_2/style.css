@@ -3,11 +3,74 @@ html {
 }
 
 body {
+    position: fixed;
     display: flex;
-    height: 100vh;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
     font-family: 'VT323', monospace;
+    user-select: none;
+}
+
+.tableData__img {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+}
+
+.tableData__img:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
+}
+
+.recordList {
+    position: absolute;
+    top: 10px;
+    left: -330px;
+    width: 320px;
+    height: 320px;
+    border-radius: 20px;
+    background-image: url("src/assets/tree.png");
+    outline: 4px solid #000;
+    transition: 500ms;
+    padding: 10px;
+    color: white;
+    max-height: 150px;
+    overflow-y: auto;
+    -webkit-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
+    box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
+}
+
+.recordList::-webkit-scrollbar {
+    width: 14px;
+}
+
+.recordList::-webkit-scrollbar-track {
+    background: rgba(255, 165, 0, 0);
+    margin: 20px;
+}
+
+.recordList::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 20px;
+    border: 2px solid #ffffff;
+}
+
+.recordList h3 {
+    font-size: 32px;
+}
+
+.recordList ol {
+    margin-top: 20px;
+    padding-left: 30px;
 }
 
 .score {
@@ -73,6 +136,7 @@ body {
     margin: 1vmin;
     border-radius: 2vmin;
     transition: 333ms;
+    /*font-size: 9vmin;*/
     text-shadow: 2px -2px 2px #777;
     -webkit-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
     -moz-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
@@ -83,7 +147,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 9vmin;
     font-weight: bolder;
     width: 12vmin;
     height: 12vmin;
@@ -99,6 +162,15 @@ body {
     border-radius: 1vmin;
     color: #ff0000;
     outline: 2px solid #000;
+    font-size: 1vmin;
+}
+
+.btnAgain:hover {
+    cursor: pointer;
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    -ms-transform: scale(1.2);
+    -o-transform: scale(1.2);
 }
 
 #gameOver, #win {

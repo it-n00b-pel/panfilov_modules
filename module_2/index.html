@@ -13,15 +13,23 @@
     <script type="module" src="./src/main.ts"></script>
 </head>
 <body>
+<div class="tableData">
+    <img src="src/assets/table.png" class="tableData__img" alt="table icon">
+    <div class="recordList">
+        <h3>Record list</h3>
+        <ol id="recordList"></ol>
+    </div>
+</div>
 <div>
     <div id="dataInfo">
         <div class="score">
             <div class="result shadow">
                 <span>score</span>
                 <p></p>
+                <ol></ol>
             </div>
         </div>
-        <div>
+        <div class="timeData">
             <button class="btnAgain shadow">New Game</button>
             <h3 id="timer">00:00:00</h3>
         </div>
@@ -37,7 +45,7 @@
         <div class="cell" id="c01"></div>
         <div class="cell" id="c02"></div>
         <div class="cell" id="c03"></div>
-        <div class="cell " id="c04"></div>
+        <div class="cell" id="c04"></div>
 
         <div class="cell" id="c10"></div>
         <div class="cell" id="c11"></div>
