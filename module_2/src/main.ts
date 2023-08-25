@@ -4,13 +4,13 @@ import {
 import {
     resetTimer,
     startTimer,
-    time,
 } from './utils/timer.ts';
 import {
     readFromLocalStorage,
     saveToLocalStorage,
 } from './utils/localStorage.ts';
-import {keyPressOnceTracker} from './utils/listeners.ts';
+import {getRecords, setRecords} from './api/api.ts';
+import {checkFirstStart, showGameOverModal} from './utils/modalsHandler.ts';
 
 let gameField: Array<Array<0 | number>> = [];
 let score = 0;
@@ -18,7 +18,6 @@ let isFinish = false;
 let winNum = 2048;
 let isWin = false;
 let currentValue = 0;
-let isFirstStart = false;
 
 const createGameField = () => {
     for (let i = 0; i < 5; i++) {
@@ -52,7 +51,7 @@ function getRandomNumber() {
 }
 
 // После каждого изменения массива gameField вызываем для перерисовки новых данных
-const renderData = () => {
+const renderData = async () => {
     for (let x = 0; x < 5; x++) {
         for (let y = 0; y < 5; y++) {
             let div = document.getElementById('c' + x + y);
@@ -97,33 +96,11 @@ const renderData = () => {
     // Если есть ячейка 2048 то модалка победы
     if (isWin) {
         saveToLocalStorage('best', currentValue);
-        let div = document.getElementById('win');
-        let spanRes = document.getElementById('finishTime');
-        if (div && spanRes) {
-            spanRes.innerHTML = time;
-            div.style.display = 'flex';
-        }
-
-        saveToLocalStorage('recordList', time);
-        let recordList = document.getElementById('recordList');
-
-        //Добавляем результат в список
-        if (recordList) {
-            let listItem = document.createElement('li');
-            listItem.textContent = time;
-            recordList.appendChild(listItem);
-        }
-
+        await setRecords();
     }
     // Если конец то модалка проигр
     if (isFinish) {
-        saveToLocalStorage('best', currentValue);
-        let div = document.getElementById('gameOver');
-        let spanRes = document.getElementById('finishResult');
-        if (div && spanRes) {
-            spanRes.innerHTML = score.toString();
-            div.style.display = 'flex';
-        }
+        showGameOverModal(currentValue, score);
     }
 };
 
@@ -154,7 +131,7 @@ const getNextIndexCell = (direction: 'left' | 'up' | 'down' | 'right', x: number
             return -1;
     }
 };
-export const moveLeft = () => {
+export const moveLeft = async () => {
     const oldGameField = String(gameField);
 
     // Сначала проходимся по строкам / внутри них по столбцам (горизонталь)
@@ -186,11 +163,11 @@ export const moveLeft = () => {
     if (oldGameField !== newGameField) {
         getRandomNumber();
         checkGameOver();
-        renderData();
+        await renderData();
     }
 };
 
-export const moveRight = () => {
+export const moveRight = async () => {
     const oldGameField = String(gameField);
 
     // Сначала проходимся по строкам / внутри них по столбцам (горизонталь)
@@ -222,12 +199,12 @@ export const moveRight = () => {
     if (oldGameField !== newGameField) {
         getRandomNumber();
         checkGameOver();
-        renderData();
+        await renderData();
     }
 
 };
 
-export const moveUp = () => {
+export const moveUp = async () => {
     const oldGameField = String(gameField);
 
     // Сначала проходимся по строкам / внутри них по столбцам (вертикаль)
@@ -259,11 +236,11 @@ export const moveUp = () => {
     if (oldGameField !== newGameField) {
         getRandomNumber();
         checkGameOver();
-        renderData();
+        await renderData();
     }
 };
 
-export const moveDown = () => {
+export const moveDown = async () => {
     const oldGameField = String(gameField);
 
     // Сначала проходимся по строкам / внутри них по столбцам (вертикаль)
@@ -294,13 +271,12 @@ export const moveDown = () => {
     if (oldGameField !== newGameField) {
         getRandomNumber();
         checkGameOver();
-        renderData();
+        await renderData();
     }
 };
 
 //Проверка есть ли результат 2048
 const check2048 = (num: number) => {
-    // num === winNum ? isWin = true : isWin = false;
     if (num === winNum) {
         isWin = true;
     }
@@ -333,8 +309,7 @@ const checkGameOver = () => {
     return;
 };
 
-export const resetGame = () => {
-
+export const resetGame = async () => {
     let divGameOver = document.getElementById('gameOver');
     let divWin = document.getElementById('win');
 
@@ -342,36 +317,142 @@ export const resetGame = () => {
         resetTimer();
         currentValue = 0;
         isWin = false;
-        start();
+        await start();
         divGameOver.style.display = 'none';
         divWin.style.display = 'none';
     }
 };
 
+
+const keyPressOnceTracker = () => {
+    window.addEventListener('keydown', handleKeydown, {
+        once: true,
+    });
+};
+
+const handleKeydown = async (event: KeyboardEvent) => {
+    switch (event.key) {
+        case 'ArrowUp':
+            await moveUp();
+            break;
+        case 'ArrowRight':
+            await moveRight();
+            break;
+        case 'ArrowDown':
+            await moveDown();
+            break;
+        case 'ArrowLeft':
+            await moveLeft();
+            break;
+        default:
+            keyPressOnceTracker();
+            return;
+    }
+    keyPressOnceTracker();
+};
+
+let resetButtons = document.getElementsByClassName('btnAgain');
+
+// Назначаем обработчик события для каждой кнопки
+for (let i = 0; i < resetButtons.length; i++) {
+    resetButtons[i].addEventListener('click', async () => {
+        await resetGame();
+    });
+}
+
+// Для управления мышкой/жестами находим где было нажатие и где отпустили/ вычисляем направление
+let startX: number, startY: number, endX: number, endY: number;
+
+function handleMove(event: MouseEvent | TouchEvent) {
+    if (event instanceof MouseEvent) {
+        startX = event.x;
+        startY = event.y;
+    } else if (event instanceof TouchEvent) {
+        startX = event.touches[0].pageX;
+        startY = event.touches[0].pageY;
+    }
+}
+
+async function handleEnd(event: MouseEvent | TouchEvent) {
+    if (event instanceof MouseEvent) {
+        endX = event.x;
+        endY = event.y;
+    } else if (event instanceof TouchEvent) {
+        endX = event.changedTouches[0].pageX;
+        endY = event.changedTouches[0].pageY;
+    }
+
+    let x = endX - startX;
+    let y = endY - startY;
+
+    let absX = Math.abs(x) > Math.abs(y);
+    let absY = Math.abs(y) > Math.abs(x);
+    if (x > 0 && absX) {
+        await moveRight();
+    } else if (x < 0 && absX) {
+        await moveLeft();
+    } else if (y > 0 && absY) {
+        await moveDown();
+    } else if (y < 0 && absY) {
+        await moveUp();
+    }
+}
+
+document.addEventListener('mousedown', handleMove);
+document.addEventListener('mouseup', handleEnd);
+document.addEventListener('touchstart', handleMove);
+document.addEventListener('touchend', handleEnd);
+
+// Открытие списка результатов
+let listData = document.getElementsByClassName('tableData__img');
+
+// Назначаем обработчик события для кнопки открытия списка
+listData[0].addEventListener('click', (event) => {
+    let div = document.getElementsByClassName('recordList');
+    (div[0] as HTMLElement).style.left = '0px';
+    event.stopPropagation();
+});
+
+const div = document.getElementsByClassName('recordList');
+document.addEventListener('click', (e) => {
+    const withinBoundaries = e.composedPath().includes(div[0]);
+    if (!withinBoundaries) {
+        (div[0] as HTMLElement).style.left = '-330px'; //// скрываем элемент тк клик был за его пределами
+    }
+});
+
+//Обработчик на кнопку с формы + чек на пустое поле
+document.addEventListener('DOMContentLoaded', async function () {
+    let form = document.getElementById('myForm');
+    form && form.addEventListener('submit', function (event) {
+        let input = <HTMLInputElement>document.getElementById('myField');
+
+        if (input && input.value == '') {
+            alert('Поле не может быть пустым');
+            event.preventDefault();
+        } else {
+            saveToLocalStorage('name', input.value);
+            let div = document.getElementById('modalForName');
+            if (div) {
+                div.style.display = 'none';
+                resetGame();
+            }
+        }
+    });
+});
+
 // ==== START
 
-function start() {
+async function start() {
     // Проверяем если ли что-то в локал сторедж и сетаем в бест
+    await getRecords();
+
     const bestRes = readFromLocalStorage('best');
     let pElementResult = document.querySelector('.bestResult p');
     if (pElementResult && bestRes) pElementResult.innerHTML = bestRes.toString();
 
-    // Проверяем если ли что-то в локал сторедж и сетаем в список
-    let records = readFromLocalStorage('recordList');
-    let recordList = document.getElementById('recordList');
-
-    if (records && recordList && !isFirstStart) {
-        let data = JSON.parse(records);
-        for (let i = 0; i < data.length; i++) {
-            let listItem = document.createElement('li');
-            listItem.textContent = data[i];
-            recordList.appendChild(listItem);
-        }
-    }
-
-    isFirstStart = true;
     isWin = false;
-
+    checkFirstStart();
     startTimer();
     gameField = [];
     score = 0;
@@ -379,8 +460,8 @@ function start() {
     createGameField();
     getRandomNumber();
     getRandomNumber();
-    renderData();
+    await renderData();
     keyPressOnceTracker();
 }
 
-start();
+await start();

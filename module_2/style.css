@@ -155,7 +155,7 @@ body {
     outline: 4px solid #333;
 }
 
-.btnAgain {
+.btnAgain, .startGameBtn {
     background-color: #333;
     width: 10vmin;
     height: 3vmin;
@@ -173,7 +173,7 @@ body {
     -o-transform: scale(1.2);
 }
 
-#gameOver, #win {
+#gameOver, #win, #modalForName {
     position: fixed;
     top: 0;
     left: 0;
@@ -184,6 +184,15 @@ body {
     align-items: center;
     backdrop-filter: blur(10px);
     background-color: rgba(56, 25, 25, 0.29);
+}
+
+#myForm label {
+    font-size: 6vmin;
+    color: #8d0303;
+}
+
+#myForm input {
+    margin-bottom: 2vmin;
 }
 
 #gameOver h2 {
