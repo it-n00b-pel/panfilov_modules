@@ -7,8 +7,8 @@ let date1: number;
 class UserController {
     async create(req: express.Request, res: express.Response) {
         try {
-            const {name} = req.body;
-            console.log(name);
+            const {username} = req.body;
+
             let date2 = new Date().getTime();
             // Разница в миллисекундах
             let diff = Math.abs(date1 - date2);
@@ -25,8 +25,8 @@ class UserController {
             let seconds = Math.floor(diff / 1000);
 
             let result = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-
-            const user = await User.create({name, record: result});
+           
+            const user = await User.create({username, time: result});
             res.json(user);
         } catch (e) {
             res.status(500).json(e);
@@ -37,7 +37,6 @@ class UserController {
         try {
             const users = await User.find();
             date1 = new Date().getTime();
-            console.log('all');
             return res.json(users);
         } catch (e) {
             res.status(500).json(e);

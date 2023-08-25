@@ -4,7 +4,6 @@ import {readFromLocalStorage} from '../utils/localStorage.ts';
 export const getRecords = async () => {
     const records = await fetch('http://localhost:8000/api/v1/record/');
     const data: Array<UserType> = await records.json();
-    console.log(data);
 
     // Проверяем если ли что-то в локал сторедж и сетаем в список
     let recordList = document.getElementById('recordList');
@@ -15,33 +14,32 @@ export const getRecords = async () => {
         }
         for (let i = 0; i < data.length; i++) {
             let listItem = document.createElement('li');
-            listItem.textContent = data[i].name + '-' + data[i].record;
+            listItem.textContent = data[i].username + '-' + data[i].time;
             recordList.appendChild(listItem);
         }
     }
 };
 
 export const setRecords = async () => {
-    let name = JSON.parse(readFromLocalStorage('name') || 'noname');
+    let username = JSON.parse(readFromLocalStorage('name') || 'noname');
     const result = await fetch('http://localhost:8000/api/v1/record/', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            // 'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({name}),
+        body: JSON.stringify({username}),
     });
 
     const data: UserType = await result.json();
-    showWinModal(data.record);
+    showWinModal(data.time);
 };
 
 
 type UserType = {
     _id: string,
-    name: string,
+    username: string,
     __v: number,
-    record: string
+    time: string
 }
 
 
