@@ -15,7 +15,7 @@ import {checkFirstStart, showGameOverModal} from './utils/modalsHandler.ts';
 let gameField: Array<Array<0 | number>> = [];
 let score = 0;
 let isFinish = false;
-let winNum = 2018;
+let winNum = 8;
 let isWin = false;
 let currentValue = 0;
 
