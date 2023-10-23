@@ -1,5 +1,3 @@
-let timer = document.getElementById('timer');
-
 export let time = '';
 
 let seconds = 0;
@@ -8,6 +6,7 @@ let hours = 0;
 let interval: number | undefined;
 
 function updateTime() {
+    let timer = document.getElementsByClassName('result__timer')[0];
     seconds++;
     if (seconds === 60) {
         minutes++;

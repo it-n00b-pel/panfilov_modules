@@ -15,29 +15,27 @@ body {
     user-select: none;
 }
 
-.tableData__img {
+.table-data__img {
     position: absolute;
     top: 10px;
     left: 10px;
-    width: 30px;
+    width: 50px;
+    height: 50px;
+    background-image: url("assets/table.png");
 }
 
-.tableData__img:hover {
+.table-data__img:hover {
     cursor: pointer;
-    -webkit-transform: scale(1.2);
-    -moz-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    -o-transform: scale(1.2);
 }
 
-.recordList {
+.table-data__record-list {
     position: absolute;
     top: 10px;
-    left: -330px;
+    left: -340px;
     width: 320px;
     height: 320px;
     border-radius: 20px;
-    background-image: url("src/assets/tree.png");
+    background-image: url("assets/tree.png");
     outline: 4px solid #000;
     transition: 500ms;
     padding: 10px;
@@ -47,54 +45,55 @@ body {
     -webkit-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
     -moz-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
     box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
+    z-index: 1;
 }
 
-.recordList::-webkit-scrollbar {
+.table-data__record-list::-webkit-scrollbar {
     width: 14px;
 }
 
-.recordList::-webkit-scrollbar-track {
+.table-data__record-list::-webkit-scrollbar-track {
     background: rgba(255, 165, 0, 0);
     margin: 20px;
 }
 
-.recordList::-webkit-scrollbar-thumb {
+.table-data__record-list::-webkit-scrollbar-thumb {
     background-color: #000000;
     border-radius: 20px;
     border: 2px solid #ffffff;
 }
 
-.recordList h3 {
+.table-data__title {
     font-size: 32px;
 }
 
-.recordList ol {
+.table-data__record-item {
     margin-top: 20px;
     padding-left: 30px;
 }
 
-.score {
+.result__score {
     display: flex;
     justify-content: end;
     align-items: end;
     gap: 6vmin;
 }
 
-#timer {
+.result__timer {
     font-size: 6vmin;
     color: white;
     text-decoration: underline;
     text-shadow: #333333 3px 3px;
 }
 
-#dataInfo {
+.result {
     display: flex;
     justify-content: space-between;
     align-items: end;
     margin-bottom: 20px;
 }
 
-.result, .bestResult {
+.result__data, .result__best-value {
     height: 9vmin;
     width: 18vmin;
     background-color: #333;
@@ -109,7 +108,7 @@ body {
     padding-right: 1vmin;
 }
 
-.result span, .bestResult span {
+.result__title {
     position: absolute;
     top: 0.5vmin;
     left: 1vmin;
@@ -117,7 +116,11 @@ body {
     color: red;
 }
 
-#gameField {
+.result__value {
+    font-size: 4vmin;
+}
+
+.game-field {
     width: 72vmin;
     display: flex;
     flex-wrap: wrap;
@@ -130,32 +133,32 @@ body {
     position: relative;
 }
 
-.cell {
+.game-field__cell {
     width: 12vmin;
     height: 12vmin;
     margin: 1vmin;
+    font-weight: bolder;
     border-radius: 2vmin;
-    transition: 333ms;
-    /*font-size: 9vmin;*/
     text-shadow: 2px -2px 2px #777;
     -webkit-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
     -moz-box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
     box-shadow: 2px 2px 8px 5px rgba(0, 0, 0, 1);
+    transition: 600ms;
 }
 
 .tile {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bolder;
     width: 12vmin;
     height: 12vmin;
     margin: 1vmin;
     border-radius: 2vmin;
     outline: 4px solid #333;
+    transition: 800ms;
 }
 
-.btnAgain, .startGameBtn {
+.reset-game-btn {
     background-color: #333;
     width: 10vmin;
     height: 3vmin;
@@ -165,7 +168,7 @@ body {
     font-size: 1vmin;
 }
 
-.btnAgain:hover {
+.reset-game-btn:hover {
     cursor: pointer;
     -webkit-transform: scale(1.2);
     -moz-transform: scale(1.2);
@@ -173,7 +176,7 @@ body {
     -o-transform: scale(1.2);
 }
 
-#gameOver, #win, #modalForName {
+.name-modal, .game-over-nodal, .win-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -186,33 +189,38 @@ body {
     background-color: rgba(56, 25, 25, 0.29);
 }
 
-#myForm label {
+.name-modal__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.name-modal__input, .name-modal__submit {
+    width: 200px;
+}
+
+.name-modal__title {
     font-size: 6vmin;
     color: #8d0303;
 }
 
-#myForm input {
-    margin-bottom: 2vmin;
+.game-over-nodal, .win-modal {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
 }
 
-#gameOver h2 {
+.game-over-nodal__title, .win-modal__title {
     font-size: 20vmin;
     color: #8d0303;
+    text-align: center;
 }
 
-#gameOver h3 {
+.win-modal__time, .game-over-nodal__score {
     font-size: 10vmin;
     color: #ffffff;
-}
-
-#win h2 {
-    font-size: 20vmin;
-    color: #8d0303;
-}
-
-#win h3 {
-    font-size: 10vmin;
-    color: #ffffff;
+    text-align: center;
 }
 
 .shadow {

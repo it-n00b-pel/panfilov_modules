@@ -164,6 +164,12 @@ sub, sup {
     position: relative;
 }
 
+iframe {
+    width: 100vw;
+    height: 100vh;
+
+}
+
 sup {
     top: -0.5em;
 }
