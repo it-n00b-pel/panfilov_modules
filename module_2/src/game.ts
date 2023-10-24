@@ -1,14 +1,15 @@
 import {getFontSize, getBgColor} from './utils/styleUtils.ts';
 import {checkCurrentBestValue, saveToLocalStorage} from './utils/localStorage.ts';
-import {checkFirstStart, showGameOverModal, showWinModal} from './utils/modalsHandler.ts';
+import {checkFirstStart, showGameOverModal} from './utils/modalsHandler.ts';
 import {resetTimer, startTimer, time} from './utils/timer.ts';
+import {getRecords, setRecords} from './api/api.ts';
 
 
 export function startGame() {
     let gameField: Array<Array<number>> = [];
     let score = 0;
     let isFinish = false;
-    let winNum = 2048;
+    let winNum = 8;
     let isWin = false;
     let currentValue = 0;
     const createGameField = () => {
@@ -43,7 +44,7 @@ export function startGame() {
     }
 
 // После каждого изменения массива gameField вызываем для перерисовки новых данных
-    const renderData = () => {
+    const renderData = async () => {
         for (let x = 0; x < 5; x++) {
             for (let y = 0; y < 5; y++) {
                 // let div = document.getElementById('c' + x + y);
@@ -71,11 +72,10 @@ export function startGame() {
 
         checkCurrentBestValue(currentValue);
 
-        // Если есть ячейка 2048, то модалка победы
+        // Если есть ячейка 2048
         if (isWin) {
             saveToLocalStorage('best', currentValue.toString());
-            saveToLocalStorage('time', time);
-            showWinModal(time);
+            await setRecords(time);
             currentValue = 0;
         }
         // Если конец, то модалка проигрыша
@@ -214,9 +214,8 @@ export function startGame() {
     const resetGame = async () => {
         let divGameOver = document.getElementsByClassName('game-over-nodal modal')[0] as HTMLElement;
         let divWin = document.getElementsByClassName('win-modal')[0] as HTMLElement;
-
+        await getRecords();
         if (divGameOver || divWin) {
-            resetTimer();
             currentValue = 0;
             isWin = false;
             await start();
@@ -349,6 +348,7 @@ export function startGame() {
         let pElementResult = document.querySelector('.result__best-value p');
         if (pElementResult) pElementResult.innerHTML = bestRes;
 
+        await getRecords();
         isWin = false;
         checkFirstStart();
         startTimer();

@@ -1,9 +1,9 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import * as mongoose from 'mongoose';
-import router from './routes/router';
+import router from './src/routes/router';
 import cors from 'cors';
-import {DB_URL} from './config/db';
+import {DB_URL} from './src/config/db';
 
 dotenv.config();
 
@@ -11,8 +11,7 @@ const app = express();
 app.use(express.json());
 
 app.use(cors({
-    origin: 'http://localhost:5173', // укажите ваш источник
-    // credentials: true,
+    origin: 'http://localhost:5173',
 }));
 
 app.use('/api', router);
@@ -27,7 +26,7 @@ const startApp = async () => {
             console.log(`[server]: Server is running at http://localhost:${port}`);
         });
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
 };
 

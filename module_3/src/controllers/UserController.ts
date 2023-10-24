@@ -1,13 +1,17 @@
 import User from '../models/User';
 import express from 'express';
 
-
 let date1: number;
 
 class UserController {
     async create(req: express.Request, res: express.Response) {
         try {
             const {username} = req.body;
+
+            if (!date1) {
+                res.json({username, time: null});
+                return;
+            }
 
             let date2 = new Date().getTime();
             // Разница в миллисекундах
@@ -25,7 +29,7 @@ class UserController {
             let seconds = Math.floor(diff / 1000);
 
             let result = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-           
+
             const user = await User.create({username, time: result});
             res.json(user);
         } catch (e) {

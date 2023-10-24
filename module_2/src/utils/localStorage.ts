@@ -6,7 +6,7 @@ export const saveToLocalStorage = (key: string, data: string) => {
         }
     }
 
-    if (key === 'time') {
+    if (key === 'time' && data) {
         const arr = JSON.parse(localStorage.getItem('arr') || '[]');
         let recordList = document.getElementsByClassName('table-data__record-item')[0];
         let newArr: string[] = [];
@@ -24,6 +24,7 @@ export const saveToLocalStorage = (key: string, data: string) => {
             while (recordList.firstChild) {
                 recordList.removeChild(recordList.firstChild);
             }
+
             for (let i = 0; i < newArr.length; i++) {
                 let listItem = document.createElement('li');
                 listItem.textContent = newArr[i];

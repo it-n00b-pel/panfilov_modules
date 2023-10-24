@@ -4,9 +4,14 @@ export const showWinModal = (time: string) => {
     let div = document.getElementsByClassName('win-modal')[0] as HTMLElement;
     let spanRes = document.getElementsByClassName('win-modal__time-result')[0];
     if (div && spanRes) {
-        spanRes.innerHTML = time;
+        if (!time) {
+            spanRes.innerHTML = 'no-time';
+        } else {
+            spanRes.innerHTML = time;
+        }
         div.style.display = 'flex';
     }
+    saveToLocalStorage('time', time);
 };
 
 export const showGameOverModal = (currentValue: number, score: number) => {
@@ -25,20 +30,6 @@ export const checkFirstStart = () => {
         let div = document.getElementsByClassName('name-modal')[0] as HTMLElement;
         if (div) {
             div.style.display = 'flex';
-        }
-    }
-
-    const arr = JSON.parse(localStorage.getItem('arr') || '[]');
-    let recordList = document.getElementsByClassName('table-data__record-item')[0];
-
-    if (arr && arr.length) {
-        while (recordList.firstChild) {
-            recordList.removeChild(recordList.firstChild);
-        }
-        for (let i = 0; i < arr.length; i++) {
-            let listItem = document.createElement('li');
-            listItem.textContent = arr[i];
-            recordList.appendChild(listItem);
         }
     }
 };
