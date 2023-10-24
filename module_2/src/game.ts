@@ -9,7 +9,7 @@ export function startGame() {
     let gameField: Array<Array<number>> = [];
     let score = 0;
     let isFinish = false;
-    let winNum = 8;
+    let winNum = 2048;
     let isWin = false;
     let currentValue = 0;
     const createGameField = () => {
