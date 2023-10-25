@@ -11,7 +11,9 @@ export function startGame() {
     let isFinish = false;
     let winNum = 2048;
     let isWin = false;
+    let oldGameField = String(gameField);
     let currentValue = 0;
+    let newCell = 0;
     const createGameField = () => {
         for (let i = 0; i < 5; i++) {
             gameField[i] = [];
@@ -41,6 +43,13 @@ export function startGame() {
         const randomIndex = Math.floor(Math.random() * nullCells.length);
         const [rowIndex, colIndex] = nullCells[randomIndex];
         gameField[rowIndex][colIndex] = Math.random() < 0.9 ? 2 : 4;
+
+        let countCell = rowIndex * 5 + colIndex;
+        let div = document.getElementsByClassName('game-field__cell')[
+            countCell
+            ] as HTMLElement;
+        newCell = countCell;
+        div.style.background = '#333';
     }
 
 // После каждого изменения массива gameField вызываем для перерисовки новых данных
@@ -57,11 +66,18 @@ export function startGame() {
                         div.className = 'game-field__cell';
                         div.style.background = getBgColor(gameField[x][y]);
                     } else {
-                        div.style.background = getBgColor(gameField[x][y]);
-                        div.classList.add('tile');
                         div.innerHTML = String(gameField[x][y]);
-                        // Изменяет размер текст по мере увеличения значение числа в ячейке
                         div.style.fontSize = getFontSize(gameField[x][y]);
+                        
+                        if (newCell === countCell) {
+                            setTimeout(() => {
+                                div.style.background = getBgColor(gameField[x][y]);
+                                div.classList.add('tile');
+                            }, 222);
+                        } else {
+                            div.style.background = getBgColor(gameField[x][y]);
+                            div.classList.add('tile');
+                        }
                     }
                 }
             }
@@ -114,7 +130,7 @@ export function startGame() {
 
 
     const move = async (direction: 'left' | 'up' | 'down' | 'right') => {
-        const oldGameField = String(gameField);
+        oldGameField = String(gameField);
 
         // Сначала проходимся по строкам / внутри них по столбцам (горизонталь или вертикаль)
         if (!isWin) {
@@ -358,7 +374,7 @@ export function startGame() {
         createGameField();
         getRandomNumber();
         getRandomNumber();
-        renderData();
+        await renderData();
         keyPressOnceTracker();
     };
 
